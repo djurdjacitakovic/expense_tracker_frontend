@@ -1,31 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
-import Dashboard from './pages/dashboard';
-import Income from './pages/income';
-import Expense from './pages/expense';
-import NavComponent from './components/navbar'
+import DashboardPage from "./pages/DashboardPage";
+import IncomePage from "./pages/IncomePage";
+import ExpensePage from "./pages/ExpensePage";
+import Navbar from "./components/Navbar";
 function App() {
   return (
     <Router>
       <div>
-        <NavComponent/>
-        
+        <Navbar />
         <Switch>
           <Route path="/income">
-            <Income />
+            <IncomePage />
           </Route>
           <Route path="/expense">
-            <Expense />
+            <ExpensePage />
           </Route>
           <Route path="/">
-            <Dashboard />
+            <DashboardPage />
           </Route>
         </Switch>
       </div>
