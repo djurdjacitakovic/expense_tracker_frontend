@@ -3,17 +3,16 @@ import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-
+import { boxSize } from "../styles/Navbar.module.css";
 export default function Navbar() {
   const [value, setValue] = React.useState("/");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log(value);
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box class={boxSize}>
       <Tabs
         value={value}
         onChange={handleChange}
