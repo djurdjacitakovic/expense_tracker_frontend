@@ -1,10 +1,10 @@
 export const rows = [
-  { id: 1, name: "ExpenseGroupName", description: "Description" },
-  { id: 2, name: "ExpenseGroupName22222", description: "Description222" },
+  { _id: 1, name: "ExpenseGroupName", description: "Description" },
+  { _id: 2, name: "ExpenseGroupName22222", description: "Description222" },
 ];
 export const columns = [
   {
-    field: "id",
+    field: "_id",
     headerName: "ID",
     width: 100,
   },
