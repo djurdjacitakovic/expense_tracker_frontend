@@ -1,5 +1,5 @@
 import Table from "../components/Table";
-import { columns, rows } from "../common/DashboardConfig";
+import { columns, rows } from "../common/dashboardConfig";
 
 const Dashboard = () => {
   return (

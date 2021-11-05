@@ -1,5 +1,5 @@
 import Table from "../components/Table";
-import { columns, rows } from "../common/ExpenseConfig";
+import { columns, rows } from "../common/expenseConfig";
 
 const Expense = () => {
   return (

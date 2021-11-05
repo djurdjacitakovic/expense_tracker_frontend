@@ -1,5 +1,5 @@
 import Table from "../components/Table";
-import { columns, rows } from "../common/IncomeConfig";
+import { columns, rows } from "../common/incomeConfig";
 const Income = () => {
   return (
     <h2>
