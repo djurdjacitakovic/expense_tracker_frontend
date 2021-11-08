@@ -1,4 +1,4 @@
 import axios from "axios";
 
-export const GetIncomeGroups = (URL) =>
+export const FetchData = (URL) =>
   axios.get(URL).then((response) => response.data);

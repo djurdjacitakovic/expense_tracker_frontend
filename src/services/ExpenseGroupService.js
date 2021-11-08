@@ -1,4 +1,4 @@
 import axios from "axios";
 
-export const GetExpenseGroups = (URL) =>
+export const GetData = (URL) =>
   axios.get(URL).then((response) => response.data);

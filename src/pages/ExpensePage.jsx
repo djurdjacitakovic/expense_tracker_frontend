@@ -1,12 +1,12 @@
 import Table from "../components/Table";
 import { columns } from "../common/expenseConfig";
 import { useQuery } from "react-query";
-import { GetExpenseGroups } from "../services/ExpenseGroupService";
+import { GetData } from "../services/ExpenseGroupService";
 
 const Expense = () => {
-  const URL = "http://localhost:4000/expense-groups/";
+  const URL = "http://localhost:4000/expense/";
   const { isLoading, isError, data, error } = useQuery(["todos", URL], () =>
-    GetExpenseGroups(URL)
+    GetData(URL)
   );
 
   if (isLoading) {
@@ -17,7 +17,7 @@ const Expense = () => {
     return <span>Error: {error.message}</span>;
   }
 
-  const rows = data.expenseGroups;
+  const rows = data.expenses;
   return (
     <h2>
       Expense

@@ -1,11 +1,11 @@
 import Table from "../components/Table";
-import { columns } from "../common/incomeConfig";
+import { columns } from "../common/groupConfig";
 import { FetchData } from "../services/IncomeGroupService";
 import React from "react";
 import { useQuery } from "react-query";
 
-const Income = () => {
-  const URL = "http://localhost:4000/income/";
+const IncomeGroup = () => {
+  const URL = "http://localhost:4000/income-groups/";
   const { isLoading, isError, data, error } = useQuery(["todos", URL], () =>
     FetchData(URL)
   );
@@ -18,14 +18,14 @@ const Income = () => {
     return <span>Error: {error.message}</span>;
   }
 
-  const rows = data.incomes;
+  const rows = data.incomeGroups;
   return (
     <h2>
-      Income
+      Income groups
       <br />
       <Table rows={rows} columns={columns} />
     </h2>
   );
 };
 
-export default Income;
+export default IncomeGroup;
