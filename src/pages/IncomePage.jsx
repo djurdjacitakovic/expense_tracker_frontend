@@ -1,11 +1,25 @@
 import Table from "../components/Table";
-import { columns, rows } from "../common/incomeConfig";
+import { columns } from "../common/incomeConfig";
+import { GetIncomeGroups } from "../services/IncomeGroupService";
+import React from "react";
+
 const Income = () => {
+  const [post, setPost] = React.useState(null);
+
+  React.useEffect(() => {
+    const rows = GetIncomeGroups();
+    rows.then((res) => {
+      setPost(res);
+    });
+  }, []);
+
+  if (!post) return <div>Loading...</div>;
+
   return (
     <h2>
       Income
       <br />
-      <Table rows={rows} columns={columns} />
+      <Table rows={post} columns={columns} />
     </h2>
   );
 };

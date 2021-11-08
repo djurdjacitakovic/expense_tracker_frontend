@@ -1,11 +1,15 @@
-export const rows = [
-  { id: 1, name: "IGN1", description: "Description" },
-  { id: 2, name: "IGN2", description: "12345" },
-  { id: 3, name: "IGN3", description: "11112345" },
-];
+import { GetExpenseGroups } from "../services/ExpenseGroupService";
+export const getRows = () => {
+  const exp = GetExpenseGroups();
+  if (!exp) return null;
+
+  const result = exp.expenseGroups;
+  return result;
+};
+
 export const columns = [
   {
-    field: "id",
+    field: "_id",
     headerName: "ID",
     width: 100,
   },

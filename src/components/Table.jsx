@@ -12,6 +12,7 @@ function DataGridDemo(props) {
         rows={rows}
         pageSize={4}
         rowsPerPageOptions={[5]}
+        getRowId={(row) => row._id}
         checkboxSelection
         disableSelectionOnClick
       />

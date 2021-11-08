@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 
-const GetExpenseGroups = () => {
+export const GetExpenseGroups = () => {
   const baseURL = "http://localhost:4000/expense-groups/";
 
   const [post, setPost] = React.useState(null);
@@ -11,9 +11,8 @@ const GetExpenseGroups = () => {
       setPost(response.data);
     });
   }, []);
-
+  console.log(post);
   if (!post) return null;
-  return post.expenseGroups;
+  const expenseGroups = post.expenseGroups;
+  return { expenseGroups };
 };
-
-export default GetExpenseGroups;

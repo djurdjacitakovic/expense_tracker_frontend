@@ -1,7 +1,9 @@
 import Table from "../components/Table";
-import { columns, rows } from "../common/expenseConfig";
+import { columns, getRows } from "../common/expenseConfig";
 
 const Expense = () => {
+  const rows = getRows();
+  if (!rows) return <div>Loading...</div>;
   return (
     <h2>
       Expense
