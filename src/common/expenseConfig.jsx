@@ -1,12 +1,3 @@
-import { GetExpenseGroups } from "../services/ExpenseGroupService";
-export const getRows = () => {
-  const exp = GetExpenseGroups();
-  if (!exp) return null;
-
-  const result = exp.expenseGroups;
-  return result;
-};
-
 export const columns = [
   {
     field: "_id",
