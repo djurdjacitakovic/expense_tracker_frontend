@@ -3,7 +3,7 @@ import { columns } from "../common/groupConfig";
 import React from "react";
 import { useQuery } from "react-query";
 import { GetData } from "../services/Service";
-import TransactionDialog from "../components/TransactionDialog";
+import GroupDialog from "../components/TransactionDialog";
 
 const IncomeGroup = () => {
   const URL = "/income-groups/";
@@ -25,8 +25,9 @@ const IncomeGroup = () => {
     <h2>
       Income groups
       <br />
+      <GroupDialog />
+      <br />
       <Table rows={rows} columns={columns} />
-      <TransactionDialog />
     </h2>
   );
 };

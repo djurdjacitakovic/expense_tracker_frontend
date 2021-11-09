@@ -3,6 +3,7 @@ import { columns } from "../common/incomeConfig";
 import React from "react";
 import { useQuery } from "react-query";
 import { GetData } from "../services/Service";
+import TransactionDialog from "../components/TransactionDialog";
 
 const Income = () => {
   const URL = "/income/";
@@ -22,6 +23,8 @@ const Income = () => {
   return (
     <h2>
       Income
+      <br />
+      <TransactionDialog />
       <br />
       <Table rows={rows} columns={columns} />
     </h2>

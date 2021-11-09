@@ -2,7 +2,7 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
-import TransactionForm from "./TransactionForm";
+import GroupForm from "./GroupForm";
 import DialogTitle from "@mui/material/DialogTitle";
 
 export default function FormDialog() {
@@ -22,8 +22,8 @@ export default function FormDialog() {
         Open form dialog
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Transaction</DialogTitle>
-        <TransactionForm />
+        <DialogTitle>Group</DialogTitle>
+        <GroupForm />
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Subscribe</Button>

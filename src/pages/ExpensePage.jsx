@@ -2,6 +2,7 @@ import Table from "../components/Table";
 import { columns } from "../common/expenseConfig";
 import { useQuery } from "react-query";
 import { GetData } from "../services/Service";
+import TransactionDialog from "../components/TransactionDialog";
 
 const Expense = () => {
   const URL = "/expense/";
@@ -21,6 +22,8 @@ const Expense = () => {
   return (
     <h2>
       Expense
+      <br />
+      <TransactionDialog />
       <br />
       <Table rows={rows} columns={columns} />
     </h2>
