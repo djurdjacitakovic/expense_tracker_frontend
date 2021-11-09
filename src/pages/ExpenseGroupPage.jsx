@@ -2,6 +2,7 @@ import Table from "../components/Table";
 import { columns } from "../common/groupConfig";
 import { useQuery } from "react-query";
 import { GetData } from "../services/Service";
+import TransactionDialog from "../components/TransactionDialog";
 
 const ExpenseGroup = () => {
   const URL = "/expense-groups/";
@@ -24,6 +25,7 @@ const ExpenseGroup = () => {
       Expense groups
       <br />
       <Table rows={rows} columns={columns} />
+      <TransactionDialog />
     </h2>
   );
 };
