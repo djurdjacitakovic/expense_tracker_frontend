@@ -4,6 +4,7 @@ import * as yup from "yup";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
+let amountError = "";
 const validationSchema = yup.object({
   description: yup.string("Enter").required("Description is required"),
   amount: yup
@@ -41,6 +42,7 @@ const FormGroup = () => {
           }
           helperText={formik.touched.description && formik.errors.description}
         />
+        <div>{formik.errors.amount}</div>
         <TextField
           fullWidth
           id="amount"

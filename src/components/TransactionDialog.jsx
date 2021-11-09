@@ -19,14 +19,13 @@ export default function FormDialog() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
+        Add transaction
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Transaction</DialogTitle>
         <TransactionForm />
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
         </DialogActions>
       </Dialog>
     </div>

@@ -19,14 +19,13 @@ export default function FormDialog() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
+        Add group
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Group</DialogTitle>
         <GroupForm />
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
         </DialogActions>
       </Dialog>
     </div>
