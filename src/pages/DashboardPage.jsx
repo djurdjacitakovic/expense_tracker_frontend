@@ -1,30 +1,32 @@
 import Table from "../components/Table";
 import { columnsIncome, columnsExpense } from "../common/dashboardConfig";
-import { GetData } from "../services/ExpenseGroupService";
-import { FetchData } from "../services/IncomeGroupService";
+import { GetData } from "../services/Service";
 import { useQuery } from "react-query";
 
 const Dashboard = () => {
-  const URLexpense = "http://localhost:4000/expense/last-five";
-  const URLincome = "http://localhost:4000/income/last-five";
+  const URLexpense = "/expense/last-five";
+  const URLincome = "/income/last-five";
 
-  const { isLoading, isError, data, error } = useQuery(
-    ["todos", URLexpense],
-    () => GetData(URLexpense)
-  );
   const {
-    data: dataI,
-    error: errorI,
-    loading: landingI,
-    isError: isErrorI,
-  } = useQuery(["todos", URLincome], () => FetchData(URLincome));
+    data: dataExpense,
+    error: errorExpense,
+    isLoading: isLoadingExpense,
+    isError: isErrorExpense,
+  } = useQuery(["lastFiveExpense", URLexpense], () => GetData(URLexpense));
 
-  if (isLoading || landingI) {
+  const {
+    data: dataIncome,
+    error: errorIncome,
+    isLoading: isLoadingIncome,
+    isError: isErrorIncome,
+  } = useQuery(["lastFiveIncome", URLincome], () => GetData(URLincome));
+
+  if (isLoadingExpense || isLoadingIncome) {
     return <span>Loading...</span>;
   }
 
-  if (isError || isErrorI) {
-    return <span>Error: {`${error.message}`` ${errorI}`}</span>;
+  if (isErrorExpense || isErrorIncome) {
+    return <span>Error: {`${errorExpense.message}`` ${errorIncome}`}</span>;
   }
 
   return (
@@ -33,11 +35,11 @@ const Dashboard = () => {
       <br />
       Last five expense changes
       <br />
-      <Table rows={data} columns={columnsExpense} />
+      <Table rows={dataExpense} columns={columnsExpense} />
       <br />
       Last five income changes
       <br />
-      <Table rows={dataI} columns={columnsIncome} />
+      <Table rows={dataIncome} columns={columnsIncome} />
       <br />
     </h2>
   );

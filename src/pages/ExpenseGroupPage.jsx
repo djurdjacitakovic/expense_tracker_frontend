@@ -1,12 +1,13 @@
 import Table from "../components/Table";
 import { columns } from "../common/groupConfig";
 import { useQuery } from "react-query";
-import { GetData } from "../services/ExpenseGroupService";
+import { GetData } from "../services/Service";
 
 const ExpenseGroup = () => {
-  const URL = "http://localhost:4000/expense-groups/";
-  const { isLoading, isError, data, error } = useQuery(["todos", URL], () =>
-    GetData(URL)
+  const URL = "/expense-groups/";
+  const { isLoading, isError, data, error } = useQuery(
+    ["expenseGroup", URL],
+    () => GetData(URL)
   );
 
   if (isLoading) {

@@ -1,13 +1,14 @@
 import Table from "../components/Table";
 import { columns } from "../common/groupConfig";
-import { FetchData } from "../services/IncomeGroupService";
 import React from "react";
 import { useQuery } from "react-query";
+import { GetData } from "../services/Service";
 
 const IncomeGroup = () => {
-  const URL = "http://localhost:4000/income-groups/";
-  const { isLoading, isError, data, error } = useQuery(["todos", URL], () =>
-    FetchData(URL)
+  const URL = "/income-groups/";
+  const { isLoading, isError, data, error } = useQuery(
+    ["incomeGroup", URL],
+    () => GetData(URL)
   );
 
   if (isLoading) {

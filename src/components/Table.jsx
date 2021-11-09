@@ -4,6 +4,7 @@ import style from "../styles/Table.module.css";
 
 function DataGridDemo(props) {
   const { rows, columns } = props;
+  //debugger;
   return (
     <div id={style.tableSize}>
       <DataGrid

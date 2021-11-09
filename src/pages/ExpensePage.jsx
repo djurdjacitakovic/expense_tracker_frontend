@@ -1,11 +1,11 @@
 import Table from "../components/Table";
 import { columns } from "../common/expenseConfig";
 import { useQuery } from "react-query";
-import { GetData } from "../services/ExpenseGroupService";
+import { GetData } from "../services/Service";
 
 const Expense = () => {
-  const URL = "http://localhost:4000/expense/";
-  const { isLoading, isError, data, error } = useQuery(["todos", URL], () =>
+  const URL = "/expense/";
+  const { isLoading, isError, data, error } = useQuery(["expense", URL], () =>
     GetData(URL)
   );
 
