@@ -4,6 +4,7 @@ import style from "../styles/Table.module.css";
 
 function DataGridDemo(props) {
   const { rows, columns } = props;
+
   return (
     <div id={style.tableSize}>
       <DataGrid
@@ -12,6 +13,7 @@ function DataGridDemo(props) {
         rows={rows}
         pageSize={4}
         rowsPerPageOptions={[5]}
+        getRowId={(row) => row._id}
         checkboxSelection
         disableSelectionOnClick
       />

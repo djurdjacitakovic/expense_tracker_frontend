@@ -23,6 +23,18 @@ export default function Navbar() {
         <Tab value="/" component={Link} to="/" label="Dashboard" />
         <Tab value="/expense" component={Link} to="/expense" label="Expense" />
         <Tab value="/income" component={Link} to="/income" label="Income" />
+        <Tab
+          value="/expense-groups"
+          component={Link}
+          to="/expense-groups"
+          label="Expense groups "
+        />
+        <Tab
+          value="/income-groups"
+          component={Link}
+          to="/income-groups"
+          label="Income groups"
+        />
       </Tabs>
     </Box>
   );

@@ -19,15 +19,8 @@ export const columns = [
     editable: true,
   },
   {
-    field: "id",
+    field: "_id",
     headerName: "ID",
     width: 100,
   },
-];
-export const rows = [
-  { description: "ddd", amount: 111, expenseGroup: "123", id: "1" },
-  { description: "p", amount: 123, expenseGroup: "1", id: "12" },
-  { description: "djurdja", amount: 100, expenseGroup: "13", id: "22" },
-  { description: "abc", amount: 100, expenseGroup: "13", id: "24" },
-  { description: "def", amount: 200, expenseGroup: "8", id: "23" },
 ];
