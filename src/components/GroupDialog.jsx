@@ -23,9 +23,9 @@ export default function FormDialog(props) {
       <Button variant="outlined" onClick={handleClickOpen}>
         Add group
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open}>
         <DialogTitle>Group</DialogTitle>
-        <GroupForm URL={URL} />
+        <GroupForm URL={URL} handleClose={handleClose} />
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>

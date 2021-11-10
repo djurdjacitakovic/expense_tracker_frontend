@@ -4,7 +4,7 @@ import * as yup from "yup";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { AddData } from "../services/Service";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 const validationSchema = yup.object({
   name: yup.string("Enter the name").required("Name is required"),
@@ -13,10 +13,18 @@ const validationSchema = yup.object({
 
 const FormGroup = (props) => {
   const { URL } = props;
-  const mutation = useMutation((values) => {
-    return AddData(URL, values);
-  });
-
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
+    (values) => {
+      AddData(URL, values);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("expenseGroup");
+        queryClient.invalidateQueries("incomeGroup");
+      },
+    }
+  );
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -35,7 +43,7 @@ const FormGroup = (props) => {
       }
 
       mutation.mutate(values);
-      console.log(values);
+      props.handleClose();
     },
   });
 

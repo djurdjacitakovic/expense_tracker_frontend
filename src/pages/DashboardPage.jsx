@@ -2,6 +2,7 @@ import Table from "../components/Table";
 import { columnsIncome, columnsExpense } from "../common/dashboardConfig";
 import { GetData } from "../services/Service";
 import { useQuery } from "react-query";
+import { GetActions } from "../common/actionConfig";
 
 const Dashboard = () => {
   const URLexpense = "/expense/last-five";
@@ -29,13 +30,18 @@ const Dashboard = () => {
     return <span>Error: {`${errorExpense.message}`` ${errorIncome}`}</span>;
   }
 
+  const handleDelete = (id) => {
+    debugger;
+  };
+
+  const tableConfig = [...columnsExpense, ...GetActions(handleDelete)];
   return (
     <h2>
       Dashboard
       <br />
       Last five expense changes
       <br />
-      <Table rows={dataExpense} columns={columnsExpense} />
+      <Table rows={dataExpense} columns={tableConfig} />
       <br />
       Last five income changes
       <br />

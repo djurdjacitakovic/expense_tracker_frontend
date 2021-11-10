@@ -11,6 +11,13 @@ const Expense = () => {
     GetData(URL)
   );
 
+  const {
+    isLoading: isLoadingGroup,
+    isError: isErrorGroup,
+    data: dataGroup,
+    error: errorGroup,
+  } = useQuery(["expenseGroupSelect", URLgroup], () => GetData(URLgroup));
+
   if (isLoading) {
     return <span>Loading...</span>;
   }
@@ -19,12 +26,20 @@ const Expense = () => {
     return <span>Error: {error.message}</span>;
   }
 
+  if (isLoadingGroup) {
+    return <span>Loading...</span>;
+  }
+  if (isErrorGroup) {
+    return <span>Error: {errorGroup.message}</span>;
+  }
+
   const rows = data.expenses;
+  const options = dataGroup.expenseGroups;
   return (
     <h2>
       Expense
       <br />
-      <TransactionDialog URL={URL} URLgroup={URLgroup} />
+      <TransactionDialog URL={URL} options={options} />
       <br />
       <Table rows={rows} columns={columns} />
     </h2>

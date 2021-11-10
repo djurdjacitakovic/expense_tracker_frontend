@@ -4,7 +4,7 @@ import * as yup from "yup";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { AddData } from "../services/Service";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import Select from "./Select";
 
 const validationSchema = yup.object({
@@ -17,11 +17,25 @@ const validationSchema = yup.object({
 });
 
 const FormGroup = (props) => {
-  const { URL, optionsGroups } = props;
+  const { URL, options } = props;
+  // let option = "";
+  const [option, setOption] = React.useState("");
 
-  const mutation = useMutation((values) => {
-    return AddData(URL, values);
-  });
+  const handleChangeSelect = (selected) => {
+    setOption(selected);
+  };
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
+    (values) => {
+      AddData(URL, values);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("expense");
+        queryClient.invalidateQueries("income");
+      },
+    }
+  );
 
   const formik = useFormik({
     initialValues: {
@@ -32,11 +46,9 @@ const FormGroup = (props) => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       if (mutation.isLoading) {
-        console.log("loading");
         return <span>Loading...</span>;
       }
       if (mutation.isError) {
-        console.log("error");
         return <span>Error: {mutation.error}</span>;
       }
 
@@ -48,6 +60,7 @@ const FormGroup = (props) => {
       };
 
       mutation.mutate(data);
+      props.handleClose();
     },
   });
 
@@ -79,8 +92,19 @@ const FormGroup = (props) => {
           helperText={formik.touched.amount && formik.errors.amont}
         />
         <br />
-        <Select optionsGroups={optionsGroups} />
-        <br />
+        <Select
+          options={options}
+          selected={handleChangeSelect}
+          fullWidth
+          id="idGroup"
+          name="idGroup"
+          label="idGroup"
+          value={(formik.values.idGroup = option)}
+          onChange={formik.handleChange}
+          error={formik.touched.idGroup && Boolean(formik.errors.idGroup)}
+          helperText={formik.touched.idGroup && formik.errors.idGroup}
+        />
+
         <Button color="primary" variant="contained" fullWidth type="submit">
           Submit
         </Button>

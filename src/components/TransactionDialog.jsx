@@ -4,11 +4,9 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import TransactionForm from "./TransactionForm";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useQuery } from "react-query";
-import { GetData } from "../services/Service";
 
 export default function FormDialog(props) {
-  const { URL, URLgroup } = props;
+  const { URL, options } = props;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -18,17 +16,6 @@ export default function FormDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  const { isLoading, isError, data, error } = useQuery(
-    ["formSelect", URLgroup],
-    () => GetData(URLgroup)
-  );
-  if (isLoading) {
-    return <span>Loading...</span>;
-  }
-  if (isError) {
-    return <span>Error: {error.error}</span>;
-  }
-  const optionsGroups = data.expenseGroups;
 
   return (
     <div>
@@ -37,7 +24,11 @@ export default function FormDialog(props) {
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Transaction</DialogTitle>
-        <TransactionForm URL={URL} optionsGroups={optionsGroups} />
+        <TransactionForm
+          URL={URL}
+          options={options}
+          handleClose={handleClose}
+        />
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
