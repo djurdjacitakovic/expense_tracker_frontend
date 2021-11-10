@@ -3,8 +3,10 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import { AddData } from "../services/Service";
+import { useMutation } from "react-query";
+import Select from "./Select";
 
-let amountError = "";
 const validationSchema = yup.object({
   description: yup.string("Enter").required("Description is required"),
   amount: yup
@@ -14,7 +16,13 @@ const validationSchema = yup.object({
   idGroup: yup.string("Enter").required("Group is required"),
 });
 
-const FormGroup = () => {
+const FormGroup = (props) => {
+  const { URL, optionsGroups } = props;
+
+  const mutation = useMutation((values) => {
+    return AddData(URL, values);
+  });
+
   const formik = useFormik({
     initialValues: {
       description: "",
@@ -23,7 +31,23 @@ const FormGroup = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 3));
+      if (mutation.isLoading) {
+        console.log("loading");
+        return <span>Loading...</span>;
+      }
+      if (mutation.isError) {
+        console.log("error");
+        return <span>Error: {mutation.error}</span>;
+      }
+
+      const data = {
+        description: values.description,
+        amount: values.amount,
+        expenseGroup: values.idGroup,
+        incomeGroup: values.idGroup,
+      };
+
+      mutation.mutate(data);
     },
   });
 
@@ -54,17 +78,9 @@ const FormGroup = () => {
           error={formik.touched.amount && Boolean(formik.errors.amount)}
           helperText={formik.touched.amount && formik.errors.amont}
         />
-        <TextField
-          fullWidth
-          id="idGroup"
-          name="idGroup"
-          label="Group"
-          value={formik.values.idGroup}
-          onChange={formik.handleChange}
-          error={formik.touched.idGroup && Boolean(formik.errors.idGroup)}
-          helperText={formik.touched.idGroup && formik.errors.idGroup}
-        />
-
+        <br />
+        <Select optionsGroups={optionsGroups} />
+        <br />
         <Button color="primary" variant="contained" fullWidth type="submit">
           Submit
         </Button>

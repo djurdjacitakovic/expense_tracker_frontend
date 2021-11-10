@@ -24,7 +24,7 @@ const ExpenseGroup = () => {
     <h2>
       Expense groups
       <br />
-      <GroupDialog />
+      <GroupDialog URL={URL} />
       <br />
       <Table rows={rows} columns={columns} />
     </h2>

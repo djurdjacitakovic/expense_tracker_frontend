@@ -5,7 +5,9 @@ import DialogActions from "@mui/material/DialogActions";
 import GroupForm from "./GroupForm";
 import DialogTitle from "@mui/material/DialogTitle";
 
-export default function FormDialog() {
+export default function FormDialog(props) {
+  const { URL } = props;
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -23,7 +25,7 @@ export default function FormDialog() {
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Group</DialogTitle>
-        <GroupForm />
+        <GroupForm URL={URL} />
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>

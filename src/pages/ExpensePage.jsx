@@ -6,6 +6,7 @@ import TransactionDialog from "../components/TransactionDialog";
 
 const Expense = () => {
   const URL = "/expense/";
+  const URLgroup = "/expense-groups/";
   const { isLoading, isError, data, error } = useQuery(["expense", URL], () =>
     GetData(URL)
   );
@@ -23,7 +24,7 @@ const Expense = () => {
     <h2>
       Expense
       <br />
-      <TransactionDialog />
+      <TransactionDialog URL={URL} URLgroup={URLgroup} />
       <br />
       <Table rows={rows} columns={columns} />
     </h2>
