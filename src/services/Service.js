@@ -6,3 +6,6 @@ const client = axios.create({
 
 export const GetData = (URL) =>
   client.get(URL).then((response) => response.data);
+
+export const AddData = (URL, data) =>
+  client.post(URL, data).then((response) => response.data);

@@ -1,3 +1,5 @@
+import { IconButtonSizes } from "../common/actionConfig";
+
 export const columnsExpense = [
   {
     field: "description",
